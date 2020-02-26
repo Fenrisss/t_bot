@@ -1,0 +1,4 @@
+telepot
+requests
+youtube_dl
+
