@@ -26,7 +26,7 @@ def handle(msg):
     with youtube_dl.YoutubeDL(ydl_opts) as ydl:
         ydl.download([url])
         bot.getUpdates
-        files = os.listdir(path
+        files = os.listdir(path)
         for file in files:
             if ".mp3" in file:
                 url = "https://api.telegram.org/bot%s/sendAudio" % (TOKEN)
