@@ -17,7 +17,7 @@ def handle(msg):
     flavor = telepot.flavor(msg)
     summary = telepot.glance(msg, flavor=flavor)
     print(flavor, summary)
-    path = '/Users/admin/t_bot'
+    path = '/app'
     url = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+', input_text)
     url = str(url)
     url = url.replace('[', '')
@@ -25,11 +25,7 @@ def handle(msg):
     url = url.replace(']', '')
     print(url)
     try:
-        # bot.sendChatAction(chat_id=update.message.chat_id, action=ChatAction.TYPING)
-        # bot.sendMessage(chat_id, "Done downloading, now converting ...")
-        msg = bot.sendMessage(chat_id, "Done downloading, now converting ...")
-        mes_id = msg['message_id']
-
+        msg = bot.sendMessage(chat_id, "Downloading the file...")
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
             # bot.getUpdates
@@ -40,15 +36,13 @@ def handle(msg):
                     files = {'audio': open(file, 'rb')}
                     data = {'chat_id': chat_id}
                     r = requests.post(url, files=files, data=data)
-                    print(r.status_code, r.reason, r.content)
+                    # print(r.status_code, r.reason, r.content)
+                    pprint(r.content)
                     bot.deleteMessage(telepot.message_identifier(msg))
                     os.remove(file)
 
     except:
-        bot.sendMessage(chat_id, 'I am sorry, but I am not being able to download the file :(')
-    # else:
-    #     bot.sendMessage(chat_id,text = "This is not a proper usage of me. Please, send me a message that contains youtube URL and I will send it back to you.")
-
+        bot.sendMessage(chat_id, 'Operation failed, please try again later or talk to my creator.')
 
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
