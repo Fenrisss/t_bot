@@ -44,6 +44,7 @@ def handle(msg):
     except:
         bot.sendMessage(chat_id, 'Operation failed, please try again later or talk to my creator.')
 
+
 bot = telepot.Bot(TOKEN)
 bot.message_loop(handle)
 
