@@ -8,7 +8,7 @@ from pydl import MyLogger, my_hook, ydl_opts
 import re
 from pprint import pprint
 
-TOKEN = "760565322:AAF_i401TKDPb67A7PJStDF8drYs-4z-x3w"
+TOKEN = "5390174010:AAFiL6mRSpYhbrzkUe78JKd1Hz8W0TkKUhI"
 
 
 def handle(msg):
